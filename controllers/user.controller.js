@@ -46,14 +46,15 @@ try {
     cloudinaryResponse = await cloudinary.uploader.upload(
         avatar.tempFilePath,
         {
-            folder: "libraryMS/admins",
+            folder: "LIBRARY_MANAGEMENT_SYSTEM_ADMIN_AVATARS",
         }
     );
 
-    console.log("Cloudinary Response:", cloudinaryResponse);
+    // console.log("Cloudinary Response:", cloudinaryResponse);
+    // console.log("Temp Path:", avatar.tempFilePath);
 
 } catch (error) {
-    console.log("Cloudinary Error:", error);
+    // console.log("Cloudinary Error:", error);
 
     return next(new ErrorHandler(error.message, 500));
 }
@@ -68,7 +69,7 @@ try {
         name,
         email,
         password: hashedPassword,
-        role: "admin",
+        role: "Admin",
         accountVerified: true,
         avatar:{
             public_id: cloudinaryResponse.public_id,

@@ -9,6 +9,8 @@ import bookRoutes from "./routes/book.routes.js";
 import borrowRoutes from "./routes/borrow.router.js";
 import expressFileUpload from "express-fileupload";
 import userRoutes from "./routes/user.routes.js";
+import { notifyUsers } from "./services/notifyUsers.js";
+import { removeUnverifiedAccounts } from "./services/removeUnverifiedAccounts.js";
 
 export const app = express();
 
@@ -33,6 +35,8 @@ app.use("/api/v1/book", bookRoutes);
 app.use("/api/v1/borrow", borrowRoutes);
 app.use("/api/v1/user", userRoutes);
 
+removeUnverifiedAccounts()
+notifyUsers()
 connectDB();
 
 app.use(errorMiddleware);
